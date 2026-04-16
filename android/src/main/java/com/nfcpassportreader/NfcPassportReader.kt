@@ -131,6 +131,22 @@ class NfcPassportReader(context: Context) {
       } catch (e: Exception) {}
     }
 
+    // Try to read DG14, DG15, DG16 (optional)
+    try {
+      val dg14In = service.getInputStream(PassportService.EF_DG14)
+      rawDump["DG14"] = Base64.encodeToString(dg14In.readBytes(), Base64.NO_WRAP)
+    } catch (e: Exception) {}
+
+    try {
+      val dg15In = service.getInputStream(PassportService.EF_DG15)
+      rawDump["DG15"] = Base64.encodeToString(dg15In.readBytes(), Base64.NO_WRAP)
+    } catch (e: Exception) {}
+
+    try {
+      val dg16In = service.getInputStream(PassportService.EF_DG16)
+      rawDump["DG16"] = Base64.encodeToString(dg16In.readBytes(), Base64.NO_WRAP)
+    } catch (e: Exception) {}
+
     if (includeImages) {
       try {
         val dg2In = service.getInputStream(PassportService.EF_DG2)

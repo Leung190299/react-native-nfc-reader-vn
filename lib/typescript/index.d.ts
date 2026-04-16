@@ -18,6 +18,28 @@ export type NfcResult = {
     mrz: string;
     nationality: string;
     originalFacePhoto?: string;
+    LDSVersion?: string;
+    dataGroupsPresent?: string[];
+    passportCorrectlySigned?: boolean;
+    documentSigningCertificateVerified?: boolean;
+    passportDataNotTampered?: boolean;
+    activeAuthenticationPassed?: boolean;
+    documentType?: string;
+    documentSubType?: string;
+    issuingAuthority?: string;
+    residenceAddress?: string;
+    phoneNumber?: string;
+    dataGroupsAvailable?: string[];
+    rawDump?: Record<string, string>;
+    unicodeVersion?: string;
+    verificationErrors?: string[];
+    dataGroupHashes?: Record<string, {
+        id: string;
+        sodHash: string;
+        computedHash: string;
+        match: boolean;
+    }>;
+    data_object?: Record<string, Record<string, string>>;
 };
 export default class NfcPassportReader {
     static startReading(params: StartReadingParams): Promise<NfcResult>;

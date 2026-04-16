@@ -1,1 +1,50 @@
+# Dependencies
 node_modules/
+
+# Yarn Berry (keep .yarnrc.yml and yarn.lock, ignore cache and unplugged)
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Build artifacts of example
+example/node_modules/
+example/android/build/
+example/android/app/build/
+example/ios/build/
+example/ios/Pods/
+example/ios/*.lock
+
+# iOS build artifacts
+ios/build/
+*.xcworkspace
+*.xcuserdata/
+DerivedData/
+
+# Android build artifacts
+android/build/
+android/gradle/
+android/gradlew
+android/gradlew.bat
+android/local.properties
+android/.gradle/
+
+# Misc
+.DS_Store
+*.log
+.env
+.env.*
+*.orig.*
+web-build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ruby / Cocoapods
+.bundle/
+vendor/
+
+# Note: lib/ is intentionally NOT ignored so it can be installed directly from GitHub

@@ -1,11 +1,10 @@
 {
   "name": "react-native-nfc-passport-reader-vn",
   "version": "1.0.0",
-  "private": true,
   "description": "Reads passports and ID cards using its the device NFC.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
-  "types": "lib/typescript/src/index.d.ts",
+  "types": "lib/typescript/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
@@ -42,14 +41,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/batuhanoztrk/react-native-nfc-passport-reader.git"
+    "url": "git+https://github.com/Leung190299/react-native-nfc-reader-vn.git"
   },
-  "author": "Batuhan Öztürk <batuhanoztrk@hotmail.com> (https://github.com/batuhanoztrk)",
+  "author": "Leung190299",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/batuhanoztrk/react-native-nfc-passport-reader/issues"
+    "url": "https://github.com/Leung190299/react-native-nfc-reader-vn/issues"
   },
-  "homepage": "https://github.com/batuhanoztrk/react-native-nfc-passport-reader#readme",
+  "homepage": "https://github.com/Leung190299/react-native-nfc-reader-vn#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

@@ -23,6 +23,8 @@ class NfcPassportReader(context: Context) {
   private val dateUtil = DateUtil()
 
   fun readPassport(isoDep: IsoDep, bacKey: BACKeySpec, includeImages: Boolean): NfcResult {
+    val nfcResult = NfcResult()
+    val rawDump = mutableMapOf<String, String>()
     isoDep.timeout = 10000
 
     val cardService = CardService.getInstance(isoDep)
@@ -189,7 +191,7 @@ class NfcPassportReader(context: Context) {
         
         if (rawDump.containsKey(dgKey)) {
            try {
-             val bytes = Base64.decode(rawDump[dgKey], Base64.NO_WRAP)
+             val bytes = Base64.decode(rawDump[dgKey]!!, Base64.NO_WRAP)
              val md = MessageDigest.getInstance(digestAlg)
              val computedBytes = md.digest(bytes)
              computedHashStr = bytesToHex(computedBytes)

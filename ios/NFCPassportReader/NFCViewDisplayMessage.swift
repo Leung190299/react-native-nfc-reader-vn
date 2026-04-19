@@ -22,32 +22,32 @@ extension NFCViewDisplayMessage {
     public var description: String {
         switch self {
             case .requestPresentPassport:
-                return "Hold your iPhone near an NFC enabled passport."
+                return "Giữ iPhone gần Thẻ CCCD gắn chip / Hộ chiếu."
             case .authenticatingWithPassport(let progress):
                 let progressString = handleProgress(percentualProgress: progress)
-                return "Authenticating with passport.....\n\n\(progressString)"
+                return "Đang xác thực.....\n\n\(progressString)"
             case .readingDataGroupProgress(let dataGroup, let progress):
                 let progressString = handleProgress(percentualProgress: progress)
-                return "Reading \(dataGroup).....\n\n\(progressString)"
+                return "Đang đọc \(dataGroup).....\n\n\(progressString)"
             case .error(let tagError):
                 switch tagError {
                     case NFCPassportReaderError.TagNotValid:
-                        return "Tag not valid."
+                        return "Thẻ không hợp lệ."
                     case NFCPassportReaderError.MoreThanOneTagFound:
-                        return "More than 1 tags was found. Please present only 1 tag."
+                        return "Phát hiện nhiều thẻ. Vui lòng chỉ đặt một thẻ."
                     case NFCPassportReaderError.ConnectionError:
-                        return "Connection error. Please try again."
+                        return "Lỗi kết nối. Vui lòng thử lại."
                     case NFCPassportReaderError.InvalidMRZKey:
-                        return "MRZ Key not valid for this document."
-                    case NFCPassportReaderError.ResponseError(let description, let sw1, let sw2):
-                        return "Sorry, there was a problem reading the passport. \(description) - (0x\(sw1), 0x\(sw2)"
+                        return "Thông tin xác thực không hợp lệ."
+                    case NFCPassportReaderError.ResponseError(let description, _, _):
+                        return "Lỗi khi đọc thẻ: \(description)"
                     default:
-                        return "Sorry, there was a problem reading the passport. Please try again"
+                        return "Rất tiếc, đã có lỗi khi đọc thẻ. Vui lòng thử lại"
                 }
             case .activeAuthentication:
-                return "Authenticating....."
+                return "Đang xác thực bảo mật....."
             case .successfulRead:
-                return "Passport read successfully"
+                return "Đọc thẻ thành công"
         }
     }
     

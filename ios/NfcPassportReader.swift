@@ -63,17 +63,32 @@ class NfcPassportReader: NSObject {
       let customMessageHandler: (NFCViewDisplayMessage) -> String? = { displayMessage in
         switch displayMessage {
         case .requestPresentPassport:
-          return "Hold your iPhone near an NFC-enabled ID Card / Passport."
+          return "Giữ iPhone gần Thẻ CCCD gắn chip / Hộ chiếu."
         case .successfulRead:
-          return "ID Card / Passport Successfully Read."
+          return "Đọc thẻ thành công."
         case .readingDataGroupProgress(let dataGroup, let progress):
           let progressString = self.handleProgress(percentualProgress: progress)
-          let readingDataString = "Read Data"
-          return "\(readingDataString) \(dataGroup) ...\n\(progressString)"
+          return "Đang đọc dữ liệu \(dataGroup) ...\n\(progressString)"
+        case .authenticatingWithPassport(let progress):
+          let progressString = self.handleProgress(percentualProgress: progress)
+          return "Đang xác thực ...\n\(progressString)"
+        case .activeAuthentication:
+          return "Đang xác thực bảo mật ..."
         case .error(let error):
-          return error.errorDescription
-        default:
-          return nil
+          switch error {
+          case .TagNotValid:
+            return "Thẻ không hợp lệ."
+          case .MoreThanOneTagFound:
+            return "Phát hiện nhiều thẻ. Vui lòng chỉ đặt một thẻ."
+          case .ConnectionError:
+            return "Lỗi kết nối. Vui lòng thử lại."
+          case .InvalidMRZKey:
+            return "Thông tin xác thực không chính xác."
+          case .UserCanceled:
+            return "Đã hủy quét thẻ."
+          default:
+            return error.errorDescription ?? "Lỗi không xác định."
+          }
         }
       }
 

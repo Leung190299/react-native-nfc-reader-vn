@@ -82,7 +82,21 @@ public enum NFCPassportReaderError: Error {
 @available(iOS 13, macOS 10.15, *)
 extension NFCPassportReaderError: LocalizedError {
     public var errorDescription: String? {
-        return NSLocalizedString(value, comment: "My error")
+        switch self {
+            case .ResponseError(let errMsg, _, _): return "Lỗi phản hồi từ thẻ: \(errMsg)"
+            case .InvalidResponse: return "Phản hồi không hợp lệ từ thẻ."
+            case .UnexpectedError: return "Lỗi không mong muốn."
+            case .NFCNotSupported: return "Thiết bị không hỗ trợ NFC."
+            case .NoConnectedTag: return "Không tìm thấy thẻ."
+            case .TagNotValid: return "Thẻ không hợp lệ."
+            case .ConnectionError: return "Lỗi kết nối. Vui lòng thử lại."
+            case .UserCanceled: return "Người dùng đã hủy."
+            case .InvalidMRZKey: return "Mã MRZ không hợp lệ."
+            case .MoreThanOneTagFound: return "Phát hiện nhiều thẻ. Vui lòng chỉ đặt một thẻ."
+            case .ChipAuthenticationFailed: return "Xác thực chip thất bại."
+            case .Unknown(let error): return "Lỗi: \(error.localizedDescription)"
+            default: return "Lỗi đọc thẻ (\(value))"
+        }
     }
 }
 

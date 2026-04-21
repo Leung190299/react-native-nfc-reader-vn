@@ -63,7 +63,7 @@ class NfcPassportReader: NSObject {
       let customMessageHandler: (NFCViewDisplayMessage) -> String? = { displayMessage in
         switch displayMessage {
         case .requestPresentPassport:
-          return "Giữ iPhone gần Thẻ CCCD/CC gắn chip."
+          return "Giữ iPhone gần Thẻ CCCD gắn chip/Căn cước."
         case .successfulRead:
           return "Đọc thẻ thành công."
         case .readingDataGroupProgress(let dataGroup, let progress):

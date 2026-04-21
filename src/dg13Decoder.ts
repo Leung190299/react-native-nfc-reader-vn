@@ -383,21 +383,5 @@ export class DG13Decoder {
     }
   }
 
-  static decodeFromDataGroups(
-    dataGroupsAvailable?: string[],
-    data_object?: Record<string, Record<string, string>>,
-  ): DG13Data {
-    if (!dataGroupsAvailable || !data_object) return {};
-
-    const dg13Index = dataGroupsAvailable.find(dg => dg === 'DG13' || dg === '13');
-    if (!dg13Index) return {};
-
-    const dg13Data = data_object[dg13Index];
-    if (!dg13Data) return {};
-
-    const base64Data = dg13Data.base64 || dg13Data.DG13 || Object.values(dg13Data)[0];
-    if (!base64Data) return {};
-
-    return this.decode(base64Data);
-  }
+  
 }

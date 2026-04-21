@@ -148,6 +148,18 @@ class NfcPassportReader: NSObject {
             "dataGroupHashes": dgHashesDict,
             "unicodeVersion": unicodeVersion,
             "verificationErrors": verificationErrors,
+            "dg13": [
+              "fullName": passport.fullNameVN ?? "",
+              "ethnicity": passport.ethnicity ?? "",
+              "religion": passport.religion ?? "",
+              "placeOfOrigin": passport.placeOfOrigin ?? "",
+              "placeOfResidence": passport.placeOfResidence ?? "",
+              "personalIdentification": passport.personalIdentification ?? "",
+              "fatherName": passport.fatherName ?? "",
+              "motherName": passport.motherName ?? "",
+              "spouseName": passport.spouseName ?? "",
+              "oldIdentityNumber": passport.oldIdentityNumber ?? ""
+            ],
             "data_object": dataObject
           ]
 

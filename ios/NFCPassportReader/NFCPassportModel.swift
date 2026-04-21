@@ -89,6 +89,57 @@ public class NFCPassportModel {
         return FaceImageInfo.from(dg2: dg2)
     }()
 
+    // Extract fields from DG13 if present (Vietnamese CCCD)
+    public private(set) lazy var fullNameVN : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.fullName
+    }()
+
+    public private(set) lazy var ethnicity : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.ethnicity
+    }()
+
+    public private(set) lazy var religion : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.religion
+    }()
+
+    public private(set) lazy var placeOfOrigin : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.placeOfOrigin
+    }()
+
+    public private(set) lazy var placeOfResidence : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.placeOfResidence
+    }()
+
+    public private(set) lazy var personalIdentification : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.personalIdentification
+    }()
+
+    public private(set) lazy var fatherName : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.fatherName
+    }()
+
+    public private(set) lazy var motherName : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.motherName
+    }()
+
+    public private(set) lazy var spouseName : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.spouseName
+    }()
+
+    public private(set) lazy var oldIdentityNumber : String? = {
+        guard let dg13 = dataGroupsRead[.DG13] as? DataGroup13 else { return nil }
+        return dg13.oldIdentityNumber
+    }()
+
     public private(set) lazy var documentSigningCertificate : X509Wrapper? = {
         return certificateSigningGroups[.documentSigningCertificate]
     }()

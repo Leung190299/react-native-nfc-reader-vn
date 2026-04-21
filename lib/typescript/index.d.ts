@@ -1,3 +1,5 @@
+import { DG13Decoder, DG13Data, DG13_LABELS } from './dg13Decoder';
+export { DG13Decoder, DG13Data, DG13_LABELS };
 export type StartReadingParams = {
     bacKey: {
         documentNo: string;
@@ -40,6 +42,7 @@ export type NfcResult = {
         match: boolean;
     }>;
     data_object?: Record<string, Record<string, string>>;
+    dg13?: DG13Data;
 };
 export default class NfcPassportReader {
     static startReading(params: StartReadingParams): Promise<NfcResult>;

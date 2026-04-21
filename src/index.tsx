@@ -1,5 +1,8 @@
 import { DeviceEventEmitter, Platform } from 'react-native';
 import NativeNfcPassportReader from './NativeNfcPassportReader';
+import {DG13Decoder, DG13Data, DG13_LABELS} from './dg13Decoder';
+
+export {DG13Decoder, DG13Data, DG13_LABELS};
 
 const LINKING_ERROR =
   `The package 'react-native-nfc-passport-reader' doesn't seem to be linked. Make sure: \n\n` +
@@ -59,10 +62,18 @@ export type NfcResult = {
     match: boolean;
   }>;
   data_object?: Record<string, Record<string, string>>;
+  dg13?: DG13Data;
 };
 export default class NfcPassportReader {
-  static startReading(params: StartReadingParams): Promise<NfcResult> {
-    return NfcPassportReaderNativeModule.startReading(params);
+  static async startReading(params: StartReadingParams): Promise<NfcResult> {
+    const result = await NfcPassportReaderNativeModule.startReading(params);
+    if (result.dataGroupsAvailable && result.data_object) {
+      result.dg13 = DG13Decoder.decodeFromDataGroups(
+        result.dataGroupsAvailable,
+        result.data_object,
+      );
+    }
+    return result;
   }
   static stopReading() {
     if (Platform.OS === 'android') {
